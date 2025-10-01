@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class Sum_Dif_Pro_Quo {
+public class Ex225 {
     public static double sum(double a, double b){
         return a + b;
     }
