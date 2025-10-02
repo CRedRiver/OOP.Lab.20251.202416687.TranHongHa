@@ -10,7 +10,7 @@ public class Ex226 {
             System.out.println("Enter 2 for quadratic equation;");
             System.out.println("Enter your choice:");
             int choice = input.nextInt();
-            input.nextLine(); // consume newline
+            input.nextLine(); 
 
             if (choice == 0){
                 double res = linearEqSolver(input);
@@ -117,7 +117,6 @@ public class Ex226 {
         double c = Double.parseDouble(input.nextLine());
 
         if (a == 0) {
-            // reduce to linear bx + c = 0
             if (b == 0) {
                 System.out.println("No solution!");
                 return null;
