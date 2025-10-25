@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Ex64 {
+public class DaysCounter {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         

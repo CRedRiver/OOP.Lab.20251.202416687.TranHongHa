@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Ex63 {
+public class StarTower {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 

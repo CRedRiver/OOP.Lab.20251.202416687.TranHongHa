@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class Ex65 {
+public class Array {
     public static void main(String[] args) {
         int[] my_array1 = {1954, 1538, 2434, 2350, 1634};
 

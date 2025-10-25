@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.Arrays;
 
-public class Ex66 {
+public class MatricesSum {
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter size of two matrices:");
