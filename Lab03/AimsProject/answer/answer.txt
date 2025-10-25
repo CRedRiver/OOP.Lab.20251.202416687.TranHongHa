@@ -1,7 +1,7 @@
 Question: Is Java a pass-by-value or a pass-by reference programming language?
-- Java is a pass-by-value language. When a method is called with parameter value, the
-parameter is copied and then the copy is changed, which means the original variable pointing to the object
-is still untouched.
+- Java is a pass-by-value language. As tested with the TestingParameter Class, when a method
+is called with parameter value, the parameter is copied and then the copy is changed, which 
+means the original variable pointing to the object is still untouched.
 
 Question: After the call of swap(jungleDVD, cinderellaDVD), why do the titles 
 of these two objects still remain?
