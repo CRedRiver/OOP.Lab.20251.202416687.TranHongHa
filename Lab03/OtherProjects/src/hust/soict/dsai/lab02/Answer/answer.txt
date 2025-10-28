@@ -1,0 +1,51 @@
+1. Question: When should accessor methods be used?
+- The problem with accessor methods is that they can indirectly expose private data
+inside the class when a getter or a setter is called. For example, if getter is used, 
+the user's name, which is supposed to be "private", can be exposed just by calling
+getName(), then external code can easily access a private field like name. This breaks 
+encapsulation in OOP. 
+-> Therefore, accessor methods should only be used when the field is intentionally 
+meant to be publicly accessible or when controlled access is truly necessary.
+
+- Moreover, accessor methods can affect the efficiency of the code maintainence. To be
+specific, a value returned by a getX() is changed in its type (for example: from int to 
+long), but getX() is called for hundreds of times in main(), this makes programmers do
+a hugh amount of work. 
+-> Thus, accessor methods should only be used for values that are stable and unlikely
+to change in type or meaning.
+
+- Using getters and setters is acceptable for simple objects that are only used to carry 
+data (without behavior or logic), such as DTOs (Data Transfer Object) or records, using 
+getters and setters is acceptable.
+→ The purpose is data transport, not encapsulation, so accessors don’t violate 
+design principles.
+
+- Getters can be useful when data needs to be read but not modified, or when setters
+perform validation, that is checking whether the new value is acceptable (For example, 
+setAge(int age) can check if the age is valid, this prevents invalid ones like age = -10)
+
+
+2. Question: If you create a constructor to build a DVD by title, then create another 
+constructor to build a DVD by category, does Java allow you to do this?
+- Yes, as long as the parameters inside each constructor is not similar to each other. 
+- For example, we make two constructor: DigitalVideoDisc(String title) and 
+DigitalVideoDisc(String category), this is not allowed since Java does not know what to
+choose when the constructor is called. Instead, creating two constructors like this is
+accepted as overloading constructors: DigitalVideoDisc(String title) and 
+DigitalVideoDisc(String category, boolean isCategory)
+
+3. Question: Is Java a pass-by-value or a pass-by reference programming language?
+- Java is a pass-by-value language. When a method is called with parameter value, the
+parameter is copied and then changed later, which means the original variable pointing to the object
+is still untouched.
+
+4. Question: After the call of swap(jungleDVD, cinderellaDVD), why do the titles 
+of these two objects still remain?
+- Because when we call swap(jungleDVD, cinderellaDVD), the values in the parameter part
+are copied so we basically just swap those copies, not original, hence the output is 
+still the same.
+
+5. Question: After the call of changeTitle(jungleDVD, cinderellaDVD.getTitle()), why 
+is the title of the jungleDVD changed?
+- Because when dvd.setTitle(title) is called, it directly modifies the actual object’s 
+field (the title).
