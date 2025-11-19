@@ -6,9 +6,7 @@ public class Book extends Media{
     private static int nbBook = 0;
 
     public Book(String title, String category, float cost) {
-        this.title = title;
-        this.category = category;
-        this.cost = cost;
+        super(title, category, cost);
         this.id = nbBook;
         nbBook += 1;
         

@@ -4,10 +4,10 @@ public class DigitalVideoDisc extends Disc{
 
 
     public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
-        // Call the Disc constructor (which calls the Media constructor)
+        
         super(title, category, cost, length, director); 
         
-        // Then, handle the ID generation unique to DVD
+
         nbDigitalVideoDisc += 1;
         this.id = nbDigitalVideoDisc; 
 
