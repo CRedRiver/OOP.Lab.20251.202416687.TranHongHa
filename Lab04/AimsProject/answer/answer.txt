@@ -1,15 +1,82 @@
-Question: Is Java a pass-by-value or a pass-by reference programming language?
-- Java is a pass-by-value language. As tested with the TestingParameter Class, when a method
-is called with parameter value, the parameter is copied and then the copy is changed, which 
-means the original variable pointing to the object is still untouched.
+----------------------------------------------------------------------------------------
+--LAB04
+_________
+Question: Which classes are aggregates of other classes? Checking all constructors of 
+whole classes if they initialize for their parts?
+_________
 
-Question: After the call of swap(jungleDVD, cinderellaDVD), why do the titles 
-of these two objects still remain?
-- Because when we call swap(jungleDVD, cinderellaDVD), the values in the parameter part
-are copied so we basically just swap those copies, not original, hence the output is 
-still the same.
+- Class Store and class Cart are aggregates of the Media class because both of them aggregate
+objects of type Media, and they get new Media objects by passing parameter in the method 
+addMedia(), not constructing or initializing a whole new Media object. This means when the
+Store or Cart object is deleted, the Media objects inside are not destroyed. Similarly, the 
+CompactDisc class is also aggregate of Track class.
 
-Question: After the call of changeTitle(jungleDVD, cinderellaDVD.getTitle()), why 
-is the title of the jungleDVD changed?
-- Because when dvd.setTitle(title) is called, it directly modifies the actual object’s 
-field (the title).
+
+_________
+Questions: Alternatively, to compare items in the cart, instead of using Comparator, we can use the
+Comparable interface and override the compareTo()method. You can refer to the Java docs to see the
+information of this interface.
+Suppose we are taking this Comparable interface approach.
+- What class should implement the Comparable interface?
+- In those classes, how should you implement the compareTo() method be to reflect the ordering 
+that we want?
+- Can we have two ordering rules of the item (by title then cost and by cost then title) if 
+we use this Comparable interface approach?
+- Suppose the DVDs has a different ordering rule from the other media types, that is by title,
+then decreasing length, then cost. How would you modify your code to allow this?
+_________
+
+- The Comparable interface is implemented in the class where we want objects to compare 
+themselves to each other. Therefore, we want to implement this interface in classes where
+different compare logic is required. For example, if we want to order CD by title then by
+length, then by cost, while Media types need ordering by title then cost, we override
+the compareTo()method differently in CD class from Media class. Similar implementations
+may occur for Book, DVD, Disc.
+
+- The compareTo() method returns int type, which equals to 0 if the object compared is equal
+to the other one. So in the overridden methods inside those classes, we compare with steps 
+depending on object types: Take Media for example, for String (title), we return dif where
+dif = this.title.compareTo(otherItem.title); for int or float values (like cost), we return 
+Double.compare(this.cost, other.cost) inside compareTo(Media otherItem). To make the steps go
+together, creating preferred ordering, we check sequentially each step like this:
+    {@Override
+    public int compareTo(Media other){
+        // First step
+        // Move to compare cost if titles are equal
+        int titleDiff = this.getTitle().compareTo(other.getTitle());
+        if (titleDiff != 0) return titleDiff;
+
+        // Second step
+        return Float.compare(this.getCost(), other.getCost());
+        
+    }}
+After that, inside the mediaSort() method, we perform comparison by calling Collections.sort()
+
+- Because each class can only implement Comparable only once, there is only one compareTo()
+method which set the one and only ordering rule of that class. So it is not possible to have
+two rules at the same time -> the answer is NO
+
+- Suppose we already overrode the compareTo() method inside the Media class. 
+To allow different compare logic in DVD class, we override the compareTo() method 
+exclusively in DVD class. First, compare the title like normal, then compare length and cost
+only if the other is also DVD (to prevent from possibly comparing this DVD to Book in the 
+same list, which causes errors since Book doesnt have length), else return to the Media usual
+compare logic: 
+    {@Override
+    public int compareTo(Media other){
+        // Compare by title first
+        int titleDiff = this.getTitle().compareTo(other.getTitle());
+        if (titleDiff != 0) return titleDiff;
+
+        // If both are DVDs, order by length (decreasing)
+        if (this instanceof DigitalVideoDisc && other instanceof DigitalVideoDisc) {
+            DigitalVideoDisc d1 = (DigitalVideoDisc) this;
+            DigitalVideoDisc d2 = (DigitalVideoDisc) other;
+            int lenDiff = Integer.compare(d2.getLength(), d1.getLength()); // decreasing
+            if (lenDiff != 0) return lenDiff;
+        }
+
+        // Finally compare by cost (ascending)
+        return Float.compare(this.getCost(), other.getCost());
+    }}
+Then, to modify the mediaSort() in Cart and Store, we use Collections.sort(itemsOrdered).

@@ -20,4 +20,11 @@ public class Disc extends Media{
         this.length = length;
         this.director = director;
     }
+    public Disc(String title){
+        super(title);
+    }
+    @Override
+    public String getType(){
+        return "Disc";
+    }
 }
