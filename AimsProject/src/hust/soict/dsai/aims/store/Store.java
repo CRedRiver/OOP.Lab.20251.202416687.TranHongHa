@@ -14,6 +14,10 @@ import java.util.Collections;
 public class Store {
     public static final int MAX_NUMBERS_STORE = 100;
     private ArrayList<Media> itemsInStore = new ArrayList<Media>();
+    public ArrayList<Media> getItemsInStore() {
+        return itemsInStore;
+    }
+
     private int qtyItems = 0;
 
     public void addMedia(Media item){
