@@ -1,0 +1,42 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "StoreScreen",
+            "request": "launch",
+            "mainClass": "hust.soict.dsai.screen.StoreScreen",
+            "projectName": "Lab04_88dd17e1"
+        },
+        {
+            "type": "java",
+            "name": "PainterRun",
+            "request": "launch",
+            "mainClass": "hust.soict.dsai.javafx.PainterRun",
+            "projectName": "Lab04_88dd17e1"
+        },
+        {
+            "type": "java",
+            "name": "Painter",
+            "request": "launch",
+            "mainClass": "hust.soict.dsai.javafx.Painter",
+            "projectName": "Lab04_88dd17e1"
+        },
+        {
+            "type": "java",
+            "name": "Run GUIProject (Painter)",
+            "request": "launch",
+            "mainClass": "hust.soict.dsai.javafx.Painter",
+            "projectName": "GUIProject",
+            "vmArgs": "--module-path \"D:/java/javafx-sdk-21.0.9\" --add-modules javafx.controls,javafx.fxml"
+        },
+        {
+            "type": "java",
+            "name": "Run AimsProject (Cart)",
+            "request": "launch",
+            "mainClass": "hust.soict.dsai.aims.screen.CartScreen",
+            "projectName": "AimsProject",
+            "vmArgs": "--module-path \"D:/java/javafx-sdk-21.0.9\" --add-modules javafx.controls,javafx.fxml"
+        }
+    ]
+}
