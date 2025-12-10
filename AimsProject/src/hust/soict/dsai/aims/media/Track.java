@@ -15,7 +15,10 @@ public class Track implements Playable{
     public void setTitle(String title) {
         this.title = title;
     }
-
+    public Track(String title, int length) {
+        this.title = title;
+        this.length = length;
+    }
     @Override
     public boolean equals(Object o){
         if (o == null || !(o instanceof Track)) {

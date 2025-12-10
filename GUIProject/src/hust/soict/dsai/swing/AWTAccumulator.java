@@ -1,5 +1,3 @@
-package hust.soict.dsai.swing;
-
 import java.awt.*;
 import java.awt.event.*;
 
@@ -42,3 +40,5 @@ public class AWTAccumulator extends Frame {
         }
     }
 }
+
+

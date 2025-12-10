@@ -2,6 +2,7 @@ package hust.soict.dsai.aims.media;
 
 import java.util.Comparator;
 
+import hust.soict.dsai.aims.exception.PlayerException;
 import hust.soict.dsai.comparator.MediaComparatorByCostTitle;
 import hust.soict.dsai.comparator.MediaComparatorByTitleCost;
 
@@ -69,6 +70,10 @@ public class Media implements Comparable<Media> {
         }
 
         return Float.compare(this.getCost(), other.getCost());
+    }
+
+    public String playGUI() throws PlayerException {
+        return "Playing media";
     }
 }
 

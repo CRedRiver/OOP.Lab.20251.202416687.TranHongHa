@@ -1,5 +1,3 @@
-package hust.soict.dsai.swing;
-
 import java.awt.event.*;
 import java.awt.*;       
 import javax.swing.*;     

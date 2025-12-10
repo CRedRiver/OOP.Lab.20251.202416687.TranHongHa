@@ -6,18 +6,19 @@ import hust.soict.dsai.aims.media.CompactDisc;
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.comparator.MediaComparatorByTitleCost;
 import hust.soict.dsai.comparator.MediaComparatorByCostTitle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.Collections;
 
 public class Cart {
 
     private int qtyOrdered;
     public static final int MAX_NUMBERS_ORDERED = 20;
-    private ArrayList<Media> itemsOrdered = new ArrayList<Media>();
+    private ObservableList<Media> itemsOrdered = FXCollections.observableArrayList();
 
-    public ArrayList<Media> getItemsOrdered() {
+    public ObservableList<Media> getItemsOrdered() {
         return itemsOrdered;
     }
     public int getQtyOrdered() {
@@ -187,6 +188,16 @@ public class Cart {
 
     public void empty(){
         itemsOrdered.clear();
+    }
+
+    public String placeOrder() {
+        if (itemsOrdered.isEmpty()) {
+            return "Your cart is empty";
+        } else{
+        qtyOrdered = 0;
+        this.empty();
+        return "Order successfully placed";
+        }
     }
 
 }

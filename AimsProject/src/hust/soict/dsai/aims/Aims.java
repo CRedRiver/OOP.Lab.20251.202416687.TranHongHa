@@ -1,6 +1,7 @@
 package hust.soict.dsai.aims;
 
 import hust.soict.dsai.aims.store.Store;
+import javafx.collections.ObservableList;
 import hust.soict.dsai.aims.cart.Cart;
 import hust.soict.dsai.aims.media.Book;
 import hust.soict.dsai.aims.media.CompactDisc;
@@ -31,9 +32,9 @@ public class Aims {
         localStore.addMedia(dvd2);
 
         List<Track> natureTracks = new ArrayList<>();
-        Track t1 = new Track(); t1.setTitle("Rain in the Forest"); t1.setLength(180);
-        Track t2 = new Track(); t2.setTitle("Ocean Waves"); t2.setLength(240);
-        Track t3 = new Track(); t3.setTitle("Birdsong Morning"); t3.setLength(150);
+        Track t1 = new Track("Rain in the Forest", 180);
+        Track t2 = new Track("Ocean Waves", 240);
+        Track t3 = new Track("Birdsong Morning",150);
         natureTracks.add(t1); natureTracks.add(t2); natureTracks.add(t3);
         int totalLength = t1.getLength() + t2.getLength() + t3.getLength();
         CompactDisc cd1 = new CompactDisc("Nature Soundscapes", "Ambient", "Various", totalLength, 7.99f, "Nature Label", natureTracks);
@@ -350,7 +351,7 @@ public class Aims {
     }
 
     private static void filterMediaInCartById(int minId, int maxId) {
-        ArrayList<Media> list = currentCart.getItemsOrdered();
+        ObservableList<Media> list = currentCart.getItemsOrdered();
         Cart tempCart = new Cart();
         for (Media item : list) {
             if ((item.getId() >= minId) && (item.getId() <= maxId)) {
@@ -362,7 +363,7 @@ public class Aims {
     }
 
     private static void filterMediaInCartByTitle(String keyword) {
-        ArrayList<Media> list = currentCart.getItemsOrdered();
+        ObservableList<Media> list = currentCart.getItemsOrdered();
         Cart tempCart = new Cart();
         for (Media item : list) {
             if (item.getTitle().contains(keyword)) {
@@ -374,7 +375,7 @@ public class Aims {
     }
 
     private static void removeMediaInCart(String title) {
-        ArrayList<Media> list = currentCart.getItemsOrdered();
+        ObservableList<Media> list = currentCart.getItemsOrdered();
         for (Media item : list) {
             if (item.getTitle().equals(title)) {
                 currentCart.removeMedia(item);
